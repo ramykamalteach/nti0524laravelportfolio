@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Frontsite;
+use App\Http\Controllers\PtoCController;
 
 /* Route::get('/', function () {
     return view('welcome');
@@ -26,4 +27,9 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/categories', function() {
         return view('dashboard.categories.index');
     });
+
+
+    Route::get('/projecttocategory', [PtoCController::class, 'index']);
+    Route::post('/storeprojecttocategory', [PtoCController::class, 'store'])->name('storeprojecttocategory');
+
 });
