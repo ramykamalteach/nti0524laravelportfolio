@@ -25,6 +25,15 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('site/images/ico/apple-touch-icon-114-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('site/images/ico/apple-touch-icon-72-precomposed.png')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('site/images/ico/apple-touch-icon-57-precomposed.png')}}">
+
+    <style>
+        .smoothHide {
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 2s, opacity 3s linear;
+        }
+    </style>
+
 </head>
 <!--/head-->
 
@@ -1030,6 +1039,19 @@
 
 
     <section id="contact">
+
+        @if ($message = Session::get('success'))
+            <div style="position: fixed; z-index:11111; top:10%; left: 50%; transform:translate(-50%); background-color:#77ff77; width:50%; padding: 30px; box-shadow: 5px 5px 33px; font-size: 20px;" id="alert02">
+                <p>{{ $message }}</p>
+            </div>
+            <script>
+                setTimeout(function(){ 
+                    document.getElementById("alert02").classList.add("smoothHide");
+                }, 9000);
+            </script>
+        @endif
+
+
         <div id="google-map" style="height:650px" data-latitude="52.365629" data-longitude="4.871331"></div>
         <div class="container-wrapper">
             <div class="container">

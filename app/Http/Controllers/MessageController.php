@@ -13,6 +13,11 @@ class MessageController extends Controller
     public function index()
     {
         //
+        $messages = Message::latest()->get();
+
+        return view('dashboard.messages.index', [
+            'messages' => $messages,
+        ]);
     }
 
     /**
@@ -46,7 +51,7 @@ class MessageController extends Controller
         $message->save();
 
         return redirect()->back()
-                        ->with('success','Product created successfully.');
+                        ->with('success','Message sent, And We will contact you as soon as possible');
 
     }
 
@@ -80,5 +85,29 @@ class MessageController extends Controller
     public function destroy(Message $message)
     {
         //
+    }
+
+    public function deleteSelected(Request $request) {
+
+        $messageIds = $request->input('messages', []);
+        Message::whereIn('id', $messageIds)->delete();
+        
+        return redirect()->back()->with('success', 'Selected messages deleted successfully.');
+    }
+
+    public function setSelectedRead(Request $request) {
+
+        $messageIds = $request->input('messages', []);
+        Message::whereIn('id', $messageIds)->update(['isRead' => true]);
+        
+        return redirect()->back()->with('success', 'Selected messages deleted successfully.');
+    }
+
+    public function setSelectedUnRead(Request $request) {
+
+        $messageIds = $request->input('messages', []);
+        Message::whereIn('id', $messageIds)->update(['isRead' => false]);
+        
+        return redirect()->back()->with('success', 'Selected messages deleted successfully.');
     }
 }

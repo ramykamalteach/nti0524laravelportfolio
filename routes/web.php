@@ -18,6 +18,9 @@ Route::get('/', [Frontsite::class, "index"]);
 Route::group(['prefix' => 'dashboard'], function () {
 
     Route::resource('messages', MessageController::class);
+    Route::post('/messages/delete', [MessageController::class, 'deleteSelected'])->name('messages.delete');
+    Route::post('/messages/read', [MessageController::class, 'setSelectedRead'])->name('messages.read');
+    Route::post('/messages/unread', [MessageController::class, 'setSelectedUnRead'])->name('messages.unread');
 
     Route::get('/banner', function() {
         return view('dashboard.banner.index');

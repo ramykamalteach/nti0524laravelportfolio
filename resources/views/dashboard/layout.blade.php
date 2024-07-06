@@ -67,6 +67,8 @@
 
                     <a href="{{url('/dashboard/projecttocategory')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Project to Category</a>
 
+                    <a href="{{url('/dashboard/messages')}}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Messages</a>
+
 
                     {{-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
@@ -190,7 +192,7 @@
 
             <!-- Blank Start -->
             <div class="container-fluid pt-4 px-4">
-                <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0" style="align-items: flex-start !important; justify-content: flex-start; !important;">
+                <div class="row bg-light rounded align-items-center justify-content-center mx-0" style="align-items: flex-start !important; justify-content: flex-start; !important;">
 
                     @yield('contents')
 
