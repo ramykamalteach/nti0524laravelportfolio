@@ -1045,9 +1045,11 @@
                               <abbr title="Phone">P:</abbr> (123) 456-7890
                             </address>
 
-                            <form id="main-contact-form" name="contact-form" method="post" action="#">
+                            <form id="main-contact-form01" name="contact-form" method="post" action="{{route('messages.store')}}">
+                                @csrf
+                                @method("POST")
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" placeholder="Name" required>
+                                    <input type="text" name="guestName" class="form-control" placeholder="Name" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="email" name="email" class="form-control" placeholder="Email" required>
@@ -1056,7 +1058,7 @@
                                     <input type="text" name="subject" class="form-control" placeholder="Subject" required>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="message" class="form-control" rows="8" placeholder="Message" required></textarea>
+                                    <textarea name="guestMessage" class="form-control" rows="8" placeholder="Message" required></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Send Message</button>
                             </form>
