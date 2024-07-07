@@ -6,16 +6,30 @@ use App\Http\Controllers\Frontsite;
 use App\Http\Controllers\PtoCController;
 use App\Http\Controllers\MessageController;
 
+use App\Http\Controllers\MemberController;
 
-/* Route::get('/', function () {
-    return view('welcome');
-}); */
+use App\Http\Middleware\Logged;
+
+
 
 Route::get('/', [Frontsite::class, "index"]);
 
-//Route::resource('messages', MessageController::class);
 
-Route::group(['prefix' => 'dashboard'], function () {
+Route::post('/verifyLogin', [MemberController::class, 'verifyLogin'])->name('verifyLogin.member');
+
+Route::get('/logout', [MemberController::class, 'logout'])->name('logout.member');
+
+Route::get('/login', function() {
+    return view('login.index');
+})->name('login');
+
+Route::group(['prefix' => 'dashboard', 'middleware' => Logged::class], function () {
+
+    Route::get('/register', function() {
+        return view('dashboard.registerMember.index');
+    });
+    Route::post('/registerMember', [MemberController::class, 'registerMember'])->name('register.member');
+
 
     Route::resource('messages', MessageController::class);
     Route::post('/messages/delete', [MessageController::class, 'deleteSelected'])->name('messages.delete');
